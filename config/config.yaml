@@ -1,0 +1,41 @@
+# ==========================================
+# QQ群消息抓取与智能体监控系统配置
+# ==========================================
+
+# 1. OneBot 11 网关通信配置 (连接本地 NapCatQQ)
+onebot:
+  ws_url: "ws://127.0.0.1:3001"        # NapCat 正向 WebSocket 监听地址
+  http_url: "http://127.0.0.1:3000"    # NapCat HTTP 服务地址
+  access_token: ""                     # 若在 napcat 中配置了 token 则填写
+  reconnect_interval_sec: 5            # 断线重连等待间隔 (秒)
+
+# 2. 群聊与发送者监控范围
+monitoring:
+  # 监控的目标群号白名单 (填入要抓取的QQ群号，如 [123456789, 987654321]；留空 [] 则监听机器人所在的所有群)
+  target_groups: []
+  # 忽略的发信人 QQ 号黑名单 (例如机器人自身小号、特定水群成员)
+  ignore_users: []
+
+# 3. 智能体大模型配置 (用于 L2 语义研判与关键信息提取)
+agent:
+  enabled: true                        # 是否开启大模型语义深度分析
+  provider: "openai-compatible"         # 接口类型 (标准 OpenAI 兼容接口，兼容 DeepSeek / Qwen / 千问等)
+  base_url: "https://api.deepseek.com/v1"
+  api_key: ""                          # 填入你的大模型 API 密钥 (未填时将自动降级为纯规则提取，不中断抓取)
+  model: "deepseek-chat"
+  temperature: 0.1
+  timeout_sec: 15
+
+# 4. 抓取结果存储与多通道推送
+notifications:
+  console_output: true                 # 控制台高亮打印抓取到的消息
+  sqlite_storage: true                 # 本地 SQLite 数据库持久化保存
+  
+  # 外部 Webhook 告警 (可选填)
+  feishu_webhook: ""                   # 飞书群自定义机器人 Webhook
+  wecom_webhook: ""                    # 企业微信群机器人 Webhook
+  dingtalk_webhook: ""                 # 钉钉群自定义机器人 Webhook
+  custom_webhook: ""                   # 自定义 Webhook (支持 Server酱 / PushDeer / 个人后端)
+  
+  # QQ 私聊通知管理员 (可选，填入你的管理大号 QQ，0 表示不发送 QQ 私聊通知，避免风控推荐 0)
+  admin_qq: 0

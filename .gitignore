@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+env/
+venv/
+*.egg-info/
+dist/
+build/
+
+# Data & Cache
+data/*.db
+data/group_cache.json
+*.xlsx
+*.csv
+
+# NapCat runtime & logs
+napcat/logs/
+napcat/node_modules/
+napcat/data/
+napcat/config/napcat_*.json
+napcat/config/onebot11_*.json
+
+# Temp & IDE
+.vscode/
+.idea/
+*.tmp
+*.log
