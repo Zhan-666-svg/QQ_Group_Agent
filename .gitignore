@@ -10,18 +10,17 @@ venv/
 dist/
 build/
 
-# Data & Cache
+# Data & Cache (隐私数据/数据库/本地缓存)
 data/*.db
+data/*.sqlite
 data/group_cache.json
 *.xlsx
 *.csv
 
-# NapCat runtime & logs
-napcat/logs/
-napcat/node_modules/
-napcat/data/
-napcat/config/napcat_*.json
-napcat/config/onebot11_*.json
+# NapCat binary & runtime (大文件二进制与日志)
+napcat/
+logs/
+web/
 
 # Temp & IDE
 .vscode/
